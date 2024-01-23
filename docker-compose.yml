@@ -1,0 +1,76 @@
+version: '3.3'
+services:
+  # For NGINX
+  nginx:
+    image: nginx:alpine
+    container_name: DEMO_NGINX
+    ports:
+      - 8081:80
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    restart: unless-stopped
+    depends_on:
+      - api
+    networks:
+      - demo-network
+
+  # For PHP
+  api:
+    container_name: DEMO_API
+    build:
+      context: ./
+      dockerfile: docker/php/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - demo-network
+
+  # For Database
+  db:
+    image: mysql
+    container_name: DEMO_DB
+    restart: unless-stopped
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: 'laravel'
+    networks:
+      - demo-network
+    volumes:
+      - dbdata:/var/lib/mysql/
+
+  # Other Tools
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: DEMO_PMA
+    environment:
+      PMA_HOST: db
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8082:80
+    networks:
+      - demo-network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: DEMO_MAILHOG
+    restart: unless-stopped
+    ports:
+      - 1025:1025
+      - 8083:8025
+    networks:
+      - demo-network
+
+# Docker Networks
+networks:
+  demo-network:
+    driver: bridge
+
+# Docker Volumes
+volumes:
+  dbdata:
+    driver: local
