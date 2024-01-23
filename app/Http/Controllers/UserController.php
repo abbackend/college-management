@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Constants\Gender;
 use App\Constants\UserCategory;
 use App\Http\Requests\UserRequest;
+use App\Mail\UserRegistered;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -37,7 +39,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = User::query()->create($request->validated());
+        $data = $request->validated();
+        unset($data['profile_image']);
+        $user = User::query()->create($data);
         $profile_image = null;
         if($request->hasFile('profile_image')) {
             $file = $request->file('profile_image');
@@ -45,9 +49,11 @@ class UserController extends Controller
         }
 
         $user->details->update(array_merge(
-            $request->validated(),
+            $data,
             ['profile_image' => $profile_image]
         ));
+
+        Mail::to($request->user())->send(new UserRegistered($user, $data['password']));
         return redirect()->route('users.index')->with('success', 'Record created succesfully!');
     }
 
