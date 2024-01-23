@@ -34,6 +34,8 @@
                             <tr>
                                 <th>{{ __('#') }}</th>
                                 <th>{{ __('Name') }}</th>
+                                <th>{{ __('Code') }}</th>
+                                <th>{{ __('Duration') }}</th>
                                 <th>{{ __('Created At') }}</th>
                                 <th>{{ __('Action') }}</th>
                             </tr>
@@ -43,7 +45,9 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $course->name }}</td>
-                                <td>{{ $course->created_at->format('d F, Y, H:i A') }}</td>
+                                <td>{{ $course->code }}</td>
+                                <td>{{ $course->duration }} {{ $course->duration_type->value }}</td>
+                                <td>{{ $course->created_at->format('d F, Y, h:i A') }}</td>
                                 <td>
                                     <a href="{{ route('courses.edit', $course) }}" class="btn btn-info">
                                         <i class="fa fa-edit"></i>

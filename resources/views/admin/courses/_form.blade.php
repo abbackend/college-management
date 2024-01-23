@@ -15,6 +15,47 @@
                 @enderror
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="form-group @error('code') has-error @enderror">
+                <label for="code">{{ __('Code') }}</label>
+                <input type="text" name="code" class="form-control" value="{{ $course ? $course->code : old('code') }}" required>
+                @error('code')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group @error('duration') has-error @enderror">
+                <label for="duration">{{ __('Duration') }}</label>
+                <input type="number" name="duration" class="form-control" value="{{ $course ? $course->duration : old('duration') }}" required>
+                @error('duration')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group @error('duration_type') has-error @enderror">
+                <label for="duration_type">{{ __('Duration type') }}</label>
+                <select name="duration_type" class="form-control select2">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->value }}" @if($course ? $course->duration_type->value == $type->value : old('duration_type') == $type->value) selected @endif>
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('duration_type')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">{{ $course ? __('Update') : __('Submit') }}</button>
