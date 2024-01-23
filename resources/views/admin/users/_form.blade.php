@@ -81,7 +81,7 @@
                 <label for="gender">{{ __('Gender') }}</label>
                 <select name="gender" class="form-control select2">
                     @foreach ($genders as $gender)
-                        <option value="{{ $gender->value }}" @if($user ? $user->details->gender == $gender->value : old('gender') == $gender->value) selected @endif>
+                        <option value="{{ $gender->value }}" @if($user ? $user->details->gender->value == $gender->value : old('gender') == $gender->value) selected @endif>
                             {{ $gender->name }}
                         </option>
                     @endforeach
@@ -122,7 +122,7 @@
                 <label for="category">{{ __('Category') }}</label>
                 <select name="category" class="form-control select2">
                     @foreach ($categories as $category)
-                        <option value="{{ $category->value }}" @if($user ? $user->details->category == $category->value : old('category') == $category->value) selected @endif>
+                        <option value="{{ $category->value }}" @if($user ? $user->details->category->value == $category->value : old('category') == $category->value) selected @endif>
                             {{ $category->name }}
                         </option>
                     @endforeach

@@ -57,9 +57,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('admin.users.view', [
-            'user' => $user,
-            'genders' => Gender::cases(),
-            'categories' => UserCategory::cases()
+            'user' => $user
         ]);
     }
     
@@ -81,6 +79,8 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $data = $request->validated();
+        unset($data['profile_image']);
+
         if (empty($data['password'])) {
             unset($data['password']);
         }
@@ -97,10 +97,13 @@ class UserController extends Controller
             }
         }
 
-        $user->details->update(array_merge(
-            $data,
-            ['profile_image' => $profile_image]
-        ));
+        if (!empty($profile_image)) {
+            $data = array_merge(
+                $data,
+                ['profile_image' => $profile_image]
+            );
+        }
+        $user->details->update($data);
         return redirect()->route('users.index')->with('success', 'Record updated succesfully!');
     }
 
