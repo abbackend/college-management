@@ -21,11 +21,6 @@
                 <i class="fa fa-dashboard"></i> <span>{{ __('Dashboard') }}</span>
             </a>
         </li>
-        <li class="{{ $request->segment(2) === 'sessions' ? 'active' : '' }}">
-            <a href="{{ route('sessions.index') }}">
-                <i class="fa fa-clock-o"></i> <span>{{ __('Sessions') }}</span>
-            </a>
-        </li>
         <li class="{{ $request->segment(2) === 'courses' ? 'active' : '' }}">
             <a href="{{ route('courses.index') }}">
                 <i class="fa fa-book"></i> <span>{{ __('Courses') }}</span>

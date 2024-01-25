@@ -33,14 +33,12 @@ services:
     container_name: DEMO_DB
     restart: unless-stopped
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: 'laravel'
     networks:
       - demo-network
-    volumes:
-      - dbdata:/var/lib/mysql/
 
   # Other Tools
   phpmyadmin:
@@ -69,8 +67,3 @@ services:
 networks:
   demo-network:
     driver: bridge
-
-# Docker Volumes
-volumes:
-  dbdata:
-    driver: local

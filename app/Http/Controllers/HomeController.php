@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin')->except('index');
+        $this->middleware('admin')->except(['index', 'displayImage']);
     }
 
     /**

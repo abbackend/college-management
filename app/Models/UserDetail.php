@@ -4,12 +4,10 @@ namespace App\Models;
 
 use App\Constants\Gender;
 use App\Constants\UserCategory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class UserDetail extends BaseModel
+class UserDetail extends Model
 {
-    use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +16,7 @@ class UserDetail extends BaseModel
     protected $fillable = [
         'user_id',
         'enroll_number',
+        'roll_number',
         'first_name',
         'last_name',
         'father_name',

@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use App\Constants\CourseType;
+use App\Constants\ResultStatus;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Result extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,10 +14,13 @@ class Course extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'code',
-        'duration',
-        'duration_type'
+        'user_id',
+        'course_name',
+        'course_code',
+        'course_duration',
+        'course_duration_type',
+        'status',
+        'is_published'
     ];
 
     /**
@@ -27,6 +31,12 @@ class Course extends Model
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
-        'duration_type' => CourseType::class
+        'course_duration_type' => CourseType::class,
+        'status' => ResultStatus::class,
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'user_id', 'id');
+    }
 }
