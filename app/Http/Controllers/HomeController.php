@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Constants\UserType;
 use App\Models\Course;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -43,7 +44,7 @@ class HomeController extends Controller
     {
         $courses = Course::query()->get()->count();
         $students = User::list()->get()->count();
-        $subjects = 20;
+        $subjects = Subject::query()->get()->count();;
         return view('admin.home', [
             'courses' => $courses,
             'students' => $students,
