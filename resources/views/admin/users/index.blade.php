@@ -47,7 +47,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->details->category->name }}</td>
-                                <td>{{ $user->created_at->format('d F, Y, H:i A') }}</td>
+                                <td>{{ $user->created_at->format('d F, Y, h:i A') }}</td>
                                 <td>
                                     <a href="{{ route('users.show', $user) }}" class="btn btn-info">
                                         <i class="fa fa-eye"></i>

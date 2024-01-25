@@ -36,7 +36,7 @@
                 <i class="fa fa-address-book"></i> <span>{{ __('Subjects') }}</span>
             </a>
         </li>
-        <li class="treeview {{ $request->segment(2) === 'users' ? 'active' : '' }}">
+        <!-- <li class="treeview {{ $request->segment(2) === 'users' ? 'active' : '' }}">
             <a href="#">
                 <i class="fa fa-users"></i> <span>{{ __('Students') }}</span>
                 <span class="pull-right-container">
@@ -51,6 +51,11 @@
                     <a href="#"><i class="fa fa-clock-o"></i>{{ __('Sessions') }}</a>
                 </li>
             </ul>
+        </li> -->
+        <li class="{{ $request->segment(2) === 'users' ? 'active' : '' }}">
+            <a href="{{ route('users.index') }}">
+                <i class="fa fa-users"></i> <span>{{ __('Students') }}</span>
+            </a>
         </li>
         <li class="{{ $request->segment(2) === 'results' ? 'active' : '' }}">
             <a href="#">

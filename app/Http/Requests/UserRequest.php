@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Constants\Gender;
 use App\Constants\UserCategory;
-use App\Rules\UniqueEmail;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -18,11 +17,7 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'email' => [
-                'required',
-                'email',
-                new UniqueEmail()
-            ],
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
             'enroll_number' => 'required|string',
             'first_name' => 'required|string',
@@ -30,20 +25,15 @@ class UserRequest extends FormRequest
             'father_name' => 'required|string',
             'mother_name' => 'required|string',
             'gender' => Rule::enum(Gender::class),
-            'date_of_birth' => 'required|date|date_format:Y-m-d',
+            'date_of_birth' => 'required|date|date_format:Y-m-d|before:today',
             'category' => Rule::enum(UserCategory::class),
             'address' => 'required|string',
             'contact_number' => 'required|string|digits:10',
             'profile_image' => 'nullable|mimes:jpeg,jpg,png,gif|max:20000'
         ];
 
-        if ($this->method('PUT') && $user = $this->route('user')) {
-            array_pop($rules['email']);
-            $rules['email'] = [
-                'required',
-                'email',
-                new UniqueEmail($user->id)
-            ];
+        if ($this->isMethod('PUT') && $user = $this->route('user')) {
+            $rules['email'] .= ", {$user->id}";
             $rules['password'] = 'nullable|string|min:6';
         }
 

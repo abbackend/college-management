@@ -27,4 +27,12 @@ class UserObserver
             'user_id' => $user->id
         ]);
     }
+
+    /**
+     * Handle the User "deleting" event.
+     */
+    public function deleting(User $user): void
+    {
+        $user->details->delete();
+    }
 }

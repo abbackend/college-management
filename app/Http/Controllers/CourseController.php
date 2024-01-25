@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\CourseType;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
 
@@ -23,7 +24,9 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('admin.courses.create');
+        return view('admin.courses.create', [
+            'types' => CourseType::cases()
+        ]);
     }
 
     /**
@@ -41,7 +44,8 @@ class CourseController extends Controller
     public function edit(Course $course)
     {
         return view('admin.courses.edit', [
-            'course' => $course
+            'course' => $course,
+            'types' => CourseType::cases()
         ]);
     }
 
