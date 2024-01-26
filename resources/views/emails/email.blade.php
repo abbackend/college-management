@@ -15,5 +15,5 @@ Thank you for joining our community!
 @endcomponent
 
 Regards, <br>
-{{ config('app.name') }}
+{{ config('app.college.name') }}
 @endcomponent

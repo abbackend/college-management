@@ -160,11 +160,60 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-6">
+            <div class="form-group @error('course_id') has-error @enderror">
+                <label for="course_id">{{ __('Course') }}</label>
+                <select name="course_id" class="form-control select2">
+                    @foreach ($courses as $course)
+                        <option value="{{ $course->id }}" @if($user ? $user->details->course->id == $course->id : old('course_id') == $course->id) selected @endif>
+                            {{ $course->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('course_id')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group @error('course_duration') has-error @enderror">
+                <label for="course_duration">{{ __('Semester/Year') }}</label>
+                <input type="number" name="course_duration" class="form-control" value="{{ $user ? $user->details->course_duration : old('course_duration') }}" required>
+                @error('course_duration')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <div class="form-group @error('address') has-error @enderror">
                 <label for="address">{{ __('Address') }}</label>
                 <textarea name="address" class="form-control">{{ $user ? $user->details->address : old('address') }}</textarea>
                 @error('address')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group @error('status') has-error @enderror">
+                <label for="status">{{ __('Status') }}</label>
+                <select name="status" class="form-control select2">
+                    @foreach ($statuses as $status)
+                        <option value="{{ $status->value }}" @if($user ? $user->details->status->value == $status->value : old('status') == $status->value) selected @endif>
+                            {{ $status->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('status')
                     <span class="help-block">
                         <strong>{{ $message }}</strong>
                     </span>

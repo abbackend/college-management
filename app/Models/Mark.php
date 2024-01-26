@@ -18,7 +18,9 @@ class Mark extends Model
         'subject_code',
         'subject_type',
         'theory_marks',
-        'practical_marks'
+        'practical_marks',
+        'theory_max_marks',
+        'practical_max_marks'
     ];
 
     /**
@@ -35,5 +37,10 @@ class Mark extends Model
     public function result()
     {
         return $this->hasOne(Result::class, 'result_id', 'id');
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->theory_marks + $this->practical_marks;
     }
 }

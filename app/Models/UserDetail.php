@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Constants\Gender;
 use App\Constants\UserCategory;
+use App\Constants\UserStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class UserDetail extends Model
@@ -15,6 +16,8 @@ class UserDetail extends Model
      */
     protected $fillable = [
         'user_id',
+        'course_id',
+        'course_duration',
         'enroll_number',
         'roll_number',
         'first_name',
@@ -27,6 +30,7 @@ class UserDetail extends Model
         'address',
         'contact_number',
         'profile_image',
+        'status',
     ];
 
     /**
@@ -40,10 +44,16 @@ class UserDetail extends Model
         'date_of_birth' => 'datetime:Y-m-d',
         'gender' => Gender::class,
         'category' => UserCategory::class,
+        'status' => UserStatus::class,
     ];
 
     public function user()
     {
         return $this->hasOne(User::class, 'user_id', 'id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id', 'id');
     }
 }

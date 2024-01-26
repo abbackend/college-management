@@ -13,5 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.home');
-Route::resource('/courses', App\Http\Controllers\CourseController::class);
-Route::resource('/users', App\Http\Controllers\UserController::class);
+Route::resource('courses', App\Http\Controllers\Admin\CourseController::class);
+Route::resource('subjects', App\Http\Controllers\Admin\SubjectController::class);
+Route::resource('users', App\Http\Controllers\Admin\UserController::class);
+Route::resource('results', App\Http\Controllers\Admin\ResultController::class);
+Route::get('results/publish/{result}', [App\Http\Controllers\Admin\ResultController::class, 'publish'])->name('results.publish');
+Route::get('results/generate/{user}', [App\Http\Controllers\Admin\ResultController::class, 'generate'])->name('results.generate');

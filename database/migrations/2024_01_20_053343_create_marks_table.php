@@ -20,6 +20,8 @@ return new class extends Migration
             $table->enum('subject_type', array_column(SubjectType::cases(), 'value'));
             $table->integer('theory_marks');
             $table->integer('practical_marks');
+            $table->integer('theory_max_marks');
+            $table->integer('practical_max_marks');
             $table->timestamps();
 
             $table->foreign('result_id')->references('id')->on('results');

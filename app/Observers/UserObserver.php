@@ -8,6 +8,8 @@ use App\Models\UserDetail;
 
 class UserObserver
 {
+    const BASE_ROLLNUMBER = 1000;
+
     /**
      * Handle the User "creating" event.
      */
@@ -24,7 +26,8 @@ class UserObserver
     public function created(User $user): void
     {
         UserDetail::query()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'roll_number' => self::BASE_ROLLNUMBER + $user->id
         ]);
     }
 

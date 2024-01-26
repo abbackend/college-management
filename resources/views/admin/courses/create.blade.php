@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@push('styles')
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css') }}">
+@endpush
+
 @push('content-header')
 <section class="content-header">
   <h1>
@@ -37,11 +42,13 @@
 <script src="{{ asset('plugins/input-mask/jquery.inputmask.js') }}"></script>
 <script src="{{ asset('plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
 <script src="{{ asset('plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+<script src="{{ asset('bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 
 <script>
     $(function () {
       //Money Euro
       $('[data-mask]').inputmask()
+      $('.select2').select2()
     });
 </script>
 @endpush

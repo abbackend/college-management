@@ -27,33 +27,17 @@
             </a>
         </li>
         <li class="{{ $request->segment(2) === 'subjects' ? 'active' : '' }}">
-            <a href="#">
+            <a href="{{ route('subjects.index') }}">
                 <i class="fa fa-address-book"></i> <span>{{ __('Subjects') }}</span>
             </a>
         </li>
-        <!-- <li class="treeview {{ $request->segment(2) === 'users' ? 'active' : '' }}">
-            <a href="#">
-                <i class="fa fa-users"></i> <span>{{ __('Students') }}</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>
-            <ul class="treeview-menu">
-                <li class="{{ $request->segment(3) == null ? 'active' : '' }}">
-                    <a href="{{ route('users.index') }}"><i class="fa fa-clock-o"></i>{{ __('List') }}</a>
-                </li>
-                <li class="{{ $request->segment(3) === 'sessions' ? 'active' : '' }}">
-                    <a href="#"><i class="fa fa-clock-o"></i>{{ __('Sessions') }}</a>
-                </li>
-            </ul>
-        </li> -->
         <li class="{{ $request->segment(2) === 'users' ? 'active' : '' }}">
             <a href="{{ route('users.index') }}">
                 <i class="fa fa-users"></i> <span>{{ __('Students') }}</span>
             </a>
         </li>
         <li class="{{ $request->segment(2) === 'results' ? 'active' : '' }}">
-            <a href="#">
+            <a href="{{ route('results.index') }}">
                 <i class="fa fa-file"></i> <span>{{ __('Results') }}</span>
             </a>
         </li>

@@ -29,7 +29,7 @@ class UserRegistered extends Mailable
     {
         return new Envelope(
             from: new Address(config('mail.from.address'), config('mail.from.name')),
-            subject: "Welcome to '".config('app.name')."'",
+            subject: "Welcome to '".config('app.college.name')."'",
         );
     }
 

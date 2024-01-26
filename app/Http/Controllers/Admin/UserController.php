@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Constants\Gender;
 use App\Constants\UserCategory;
+use App\Constants\UserStatus;
 use App\Http\Requests\UserRequest;
 use App\Mail\UserRegistered;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
+use App\Models\Course;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -30,7 +33,9 @@ class UserController extends Controller
     {
         return view('admin.users.create', [
             'genders' => Gender::cases(),
-            'categories' => UserCategory::cases()
+            'categories' => UserCategory::cases(),
+            'statuses' => UserStatus::cases(),
+            'courses' => Course::query()->get()
         ]);
     }
 
@@ -75,7 +80,9 @@ class UserController extends Controller
         return view('admin.users.edit', [
             'user' => $user,
             'genders' => Gender::cases(),
-            'categories' => UserCategory::cases()
+            'categories' => UserCategory::cases(),
+            'statuses' => UserStatus::cases(),
+            'courses' => Course::query()->get()
         ]);
     }
 

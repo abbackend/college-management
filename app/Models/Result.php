@@ -20,6 +20,7 @@ class Result extends Model
         'course_duration',
         'course_duration_type',
         'status',
+        'student_status',
         'is_published'
     ];
 
@@ -37,6 +38,34 @@ class Result extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function marks()
+    {
+        return $this->hasMany(Mark::class, 'result_id', 'id');
+    }
+
+    public function getObtMarksAttribute()
+    {
+        $marks = $this->marks();
+        $theory_marks = $marks->pluck('theory_marks')->sum();
+        $practical_marks = $marks->pluck('practical_marks')->sum();
+
+        return $theory_marks + $practical_marks;
+    }
+
+    public function getMaxMarksAttribute()
+    {
+        $marks = $this->marks();
+        $theory_marks = $marks->pluck('theory_max_marks')->sum();
+        $practical_marks = $marks->pluck('practical_max_marks')->sum();
+
+        return $theory_marks + $practical_marks;
+    }
+
+    public function getPercentageAttribute()
+    {
+        return number_format(($this->obt_marks / $this->max_marks) * 100, 2);    
     }
 }

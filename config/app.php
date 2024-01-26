@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
-$largeName = explode('_', env('APP_LG_NAME', 'Admin_LTE'));
-$smallName = explode('_', env('APP_SM_NAME', 'A_LT'));
+$largeName = explode('_', env('APP_LG_NAME', 'FV_College'));
+$smallName = explode('_', env('APP_SM_NAME', 'FV_C'));
 
 return [
 
@@ -190,4 +190,11 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'college' => [
+        'name' => env('COLLEGE_NAME', 'FV College'),
+        'university' => [
+            'name' => env('UNIVERSITY_NAME', 'A P J Abdul Kalam University'),
+            'location' => env('UNIVERSITY_LOCATION', 'Indore')
+        ]
+    ]
 ];
