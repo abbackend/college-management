@@ -22,6 +22,18 @@
 @section('content')
 <!-- Small boxes (Stat box) -->
 <div class="row">
-    {{ __('You are logged in!') }}
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>{{ $results }}</h3>
+                <p>{{ __('Results') }}</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-book"></i>
+            </div>
+            <a href="{{ route('student.results.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
 </div>
 @endsection

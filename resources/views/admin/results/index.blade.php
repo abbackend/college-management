@@ -24,6 +24,7 @@
         <div class="box box-primary">
             <div class="box-header">
                 <h3 class="box-title">{{ __('Results List') }}</h3>
+                @if(Auth::user()->type->value == 'admin')
                 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-add">Add</button>
                 <div class="modal fade" id="modal-add">
                     <div class="modal-dialog">
@@ -58,6 +59,7 @@
                     <!-- /.modal-dialog -->
                 </div>
                 <!-- /.modal -->
+                @endif
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -70,7 +72,9 @@
                                 <th>{{ __('Course') }}</th>
                                 <th>{{ __('Semester/Year') }}</th>
                                 <th>{{ __('Status') }}</th>
+                                @if(Auth::user()->type->value == 'admin')
                                 <th>{{ __('Published') }}</th>
+                                @endif
                                 <th>{{ __('Created At') }}</th>
                                 <th>{{ __('Action') }}</th>
                             </tr>
@@ -83,9 +87,12 @@
                                 <td>{{ $result->course_name }}</td>
                                 <td>{{ $result->course_duration }}</td>
                                 <td>{{ $result->status->name }}</td>
+                                @if(Auth::user()->type->value == 'admin')
                                 <td>{{ $result->is_published ? 'Yes' : 'No' }}</td>
+                                @endif
                                 <td>{{ $result->created_at->format('d F, Y, h:i A') }}</td>
                                 <td>
+                                    @if(Auth::user()->type->value == 'admin')
                                     <a href="{{ route('results.show', $result) }}" class="btn btn-info">
                                         <i class="fa fa-eye"></i>
                                     </a>
@@ -101,6 +108,11 @@
                                             @csrf
                                         </form>
                                     </a>
+                                    @else
+                                    <a href="{{ route('student.results.view', $result) }}" class="btn btn-info">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

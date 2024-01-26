@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Constants\CourseType;
 use App\Constants\ResultStatus;
+use App\Constants\UserStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Result extends Model
@@ -34,6 +35,7 @@ class Result extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s',
         'course_duration_type' => CourseType::class,
         'status' => ResultStatus::class,
+        'student_status' => UserStatus::class
     ];
 
     public function user()
