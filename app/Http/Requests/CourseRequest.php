@@ -19,7 +19,9 @@ class CourseRequest extends FormRequest
             'name' => 'required|string',
             'code' => 'required|string|unique:courses,code',
             'duration' => 'required|integer',
-            'duration_type' => Rule::enum(CourseType::class)
+            'duration_type' => ['required', Rule::enum(CourseType::class)],
+            'subjects' => 'nullable|array',
+            'subjects.*' => 'required|exists:subjects,id'
         ];
 
         if ($this->isMethod('PUT') && $course = $this->route('course')) {

@@ -57,6 +57,25 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group @error('subjects') has-error @enderror">
+                <label for="subjects">{{ __('Subjects') }}</label>
+                <select class="form-control select2" name="subjects[]" multiple="multiple" data-placeholder="Select subjects">
+                    @foreach ($subjects as $subject)
+                        <option value="{{ $subject->id }}" @if($course && in_array($subject->id, $course->subjects()->pluck('subject_id')->toArray())) selected @endif>
+                            {{ $subject->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('subjects')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">{{ $course ? __('Update') : __('Submit') }}</button>
     </div>

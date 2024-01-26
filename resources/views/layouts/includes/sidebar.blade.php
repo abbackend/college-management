@@ -37,7 +37,7 @@
             </a>
         </li>
         <li class="{{ $request->segment(2) === 'results' ? 'active' : '' }}">
-            <a href="#">
+            <a href="{{ route('results.index') }}">
                 <i class="fa fa-file"></i> <span>{{ __('Results') }}</span>
             </a>
         </li>

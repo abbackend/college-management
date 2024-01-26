@@ -42,13 +42,10 @@ class HomeController extends Controller
      */
     public function adminIndex()
     {
-        $courses = Course::query()->get()->count();
-        $students = User::list()->get()->count();
-        $subjects = Subject::query()->get()->count();;
         return view('admin.home', [
-            'courses' => $courses,
-            'students' => $students,
-            'subjects' => $subjects
+            'courses' => Course::query()->get()->count(),
+            'students' => User::list()->get()->count(),
+            'subjects' => Subject::query()->get()->count()
         ]);
     }
 

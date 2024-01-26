@@ -20,7 +20,7 @@ class SubjectRequest extends FormRequest
             'code' => 'required|string|unique:subjects,code',
             'theory_marks' => 'required|integer',
             'practical_marks' => 'required|integer',
-            'type' => Rule::enum(SubjectType::class)
+            'type' => ['required', Rule::enum(SubjectType::class)]
         ];
 
         if ($this->isMethod('PUT') && $subject = $this->route('subject')) {

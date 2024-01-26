@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Constants\CourseType;
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class CourseSubject extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,10 +12,8 @@ class Course extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'code',
-        'duration',
-        'duration_type'
+        'course_id',
+        'subject_id'
     ];
 
     /**
@@ -26,12 +23,16 @@ class Course extends Model
      */
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
-        'updated_at' => 'datetime:Y-m-d H:i:s',
-        'duration_type' => CourseType::class
+        'updated_at' => 'datetime:Y-m-d H:i:s'
     ];
 
-    public function subjects()
+    public function course()
     {
-        return $this->hasMany(CourseSubject::class, 'course_id', 'id');
+        return $this->belongsTo(Course::class, 'course_id', 'id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'id');
     }
 }

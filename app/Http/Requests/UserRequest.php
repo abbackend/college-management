@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Constants\Gender;
 use App\Constants\UserCategory;
+use App\Constants\UserStatus;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -17,6 +18,9 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
+            'course_id' => 'required|exists:courses,id',
+            'course_duration' => 'required|integer|gt:0',
+            'password' => 'required|string|min:6',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
             'enroll_number' => 'required|string',
@@ -24,9 +28,10 @@ class UserRequest extends FormRequest
             'last_name' => 'required|string',
             'father_name' => 'required|string',
             'mother_name' => 'required|string',
-            'gender' => Rule::enum(Gender::class),
+            'gender' => ['required', Rule::enum(Gender::class)],
             'date_of_birth' => 'required|date|date_format:Y-m-d|before:today',
-            'category' => Rule::enum(UserCategory::class),
+            'category' => ['required', Rule::enum(UserCategory::class)],
+            'status' => ['required', Rule::enum(UserStatus::class)],
             'address' => 'required|string',
             'contact_number' => 'required|string|digits:10',
             'profile_image' => 'nullable|mimes:jpeg,jpg,png,gif|max:20000'

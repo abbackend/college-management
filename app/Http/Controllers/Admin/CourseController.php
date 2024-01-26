@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Constants\CourseType;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
+use App\Models\CourseSubject;
+use App\Models\Subject;
 
 class CourseController extends Controller
 {
@@ -25,7 +28,8 @@ class CourseController extends Controller
     public function create()
     {
         return view('admin.courses.create', [
-            'types' => CourseType::cases()
+            'types' => CourseType::cases(),
+            'subjects' => Subject::query()->get()
         ]);
     }
 
@@ -34,7 +38,14 @@ class CourseController extends Controller
      */
     public function store(CourseRequest $request)
     {
-        Course::query()->create($request->validated());
+        $data = $request->validated();
+        $course = Course::query()->create($data);
+        foreach ($data['subjects'] as $subject_id) {
+            CourseSubject::query()->create([
+                'course_id' => $course->id,
+                'subject_id' => $subject_id
+            ]);
+        }
         return redirect()->route('courses.index')->with('success', 'Record created succesfully!');
     }
 
@@ -45,7 +56,8 @@ class CourseController extends Controller
     {
         return view('admin.courses.edit', [
             'course' => $course,
-            'types' => CourseType::cases()
+            'types' => CourseType::cases(),
+            'subjects' => Subject::query()->get()
         ]);
     }
 
@@ -54,7 +66,15 @@ class CourseController extends Controller
      */
     public function update(CourseRequest $request, Course $course)
     {
-        $course->fill($request->validated())->save();
+        $data = $request->validated();
+        $course->fill($data)->save();
+        $course->subjects()->delete();
+        foreach ($data['subjects'] as $subject_id) {
+            CourseSubject::query()->create([
+                'course_id' => $course->id,
+                'subject_id' => $subject_id
+            ]);
+        }
         return redirect()->route('courses.index')->with('success', 'Record updated succesfully!');
     }
 

@@ -2,6 +2,7 @@
 
 use App\Constants\CourseType;
 use App\Constants\ResultStatus;
+use App\Constants\UserStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->enum('course_duration_type', array_column(CourseType::cases(), 'value'));
             $table->enum('status', array_column(ResultStatus::cases(), 'value'));
             $table->boolean('is_published');
+            $table->enum('student_status', array_column(UserStatus::cases(), 'value'));
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

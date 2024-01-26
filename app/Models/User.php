@@ -49,7 +49,7 @@ class User extends Authenticatable
     public function getNameAttribute()
     {
         $details = $this->details;
-        return  $details ? "{$details->first_name} {$details->last_name}" : config('app.name');
+        return  $details ? "{$details->first_name} {$details->last_name}" : config('app.college.name');
     }
 
     public function getAgeAttribute()

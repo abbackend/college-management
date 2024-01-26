@@ -8,13 +8,13 @@
 @push('content-header')
 <section class="content-header">
   <h1>
-    {{ __('Courses') }}
+    {{ __('Results') }}
     <small>{{ __('Control panel') }}</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i>{{ __('Dashboard') }}</a></li>
-    <li><a href="{{ route('courses.index') }}"><i class="fa fa-users"></i>{{ __('Courses') }}</a></li>
-    <li class="active">{{ __('Edit') }}</li>
+    <li><a href="{{ route('results.index') }}"><i class="fa fa-file"></i>{{ __('Results') }}</a></li>
+    <li class="active">{{ __('Add') }}</li>
   </ol>
 </section>
 @endpush
@@ -24,11 +24,11 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">{{ __('Edit Course') }}</h3>
+                <h3 class="box-title">{{ __('Add Result') }}</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                @include('admin.courses._form', ['course' => $course])
+                @include('admin.results._form', ['user' => $user])
             </div>
             <!-- /.box-body -->
         </div>
@@ -47,8 +47,8 @@
 <script>
     $(function () {
       //Money Euro
-      $('[data-mask]').inputmask()
-      $('.select2').select2()
+        $('[data-mask]').inputmask()
+        $('.select2').select2()
     });
 </script>
 @endpush

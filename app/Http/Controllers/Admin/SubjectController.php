@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Constants\SubjectType;
 use App\Http\Requests\SubjectRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Subject;
 
 class SubjectController extends Controller

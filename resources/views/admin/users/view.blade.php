@@ -25,7 +25,7 @@
           <img class="profile-user-img img-responsive img-circle" src="{{ asset('dist/img/avatar6.png') }}" alt="User profile picture">
         @endif
         <h3 class="profile-username text-center">{{ $user->name }}</h3>
-        <p class="text-muted text-center">{{ $user->email }}</p>
+        <p class="text-muted text-center">Roll No.: {{ $user->details->roll_number }}</p>
         <a href="{{ route('users.edit', ['user' => $user]) }}" class="btn btn-primary btn-block"><b>Update Details</b></a>
       </div>
     </div>
@@ -49,13 +49,19 @@
               <li class="list-group-item">
                 <b>Gender:</b><span class="pull-right">{{ $user->details->gender->name }}</span>
               </li>
+              <li class="list-group-item">
+                <b>Date of birth:</b><span class="pull-right">{{ $user->details->date_of_birth->format('d F, Y') }} ({{ $user->age }} year's old)</span>
+              </li>
             </ul>
           </div>
           <div class="col-md-6">
             <ul class="list-group list-group-unbordered">
               <li class="list-group-item">
-                <b>Date of birth:</b><span class="pull-right">{{ $user->details->date_of_birth->format('d F, Y') }} ({{ $user->age }} year's old)</span>
-              </li>  
+                <b>Course:</b><span class="pull-right">{{ $user->details->course->name }} ({{ $user->details->status->name }})</span>
+              </li>
+              <li class="list-group-item">
+                <b>Semester/Year:</b><span class="pull-right">{{ $user->details->course_duration }}</span>
+              </li>
               <li class="list-group-item">
                 <b>Enrollment number:</b><span class="pull-right">{{ $user->details->enroll_number }}</span>
               </li>
