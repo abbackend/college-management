@@ -54,7 +54,7 @@
                         <td>{{ $subject->subject->theory_marks }}</td>
                         <td>
                             <div class="form-group @error('marks.'.$key.'.theory_marks') has-error @enderror">
-                                <input name="marks[{{ $key }}][theory_marks]" type="number" class="form-control">
+                                <input name="marks[{{ $key }}][theory_marks]" type="number" value="0" class="form-control">
                                 @error('marks.'.$key.'.theory_marks')
                                     <span class="help-block">
                                         <strong>{{ $message }}</strong>
@@ -65,7 +65,7 @@
                         <td>{{ $subject->subject->practical_marks }}</td>
                         <td>
                             <div class="form-group @error('marks.'.$key.'.practical_marks') has-error @enderror">
-                                <input name="marks[{{ $key }}][practical_marks]" type="number" class="form-control">
+                                <input name="marks[{{ $key }}][practical_marks]" type="number" value="0" class="form-control">
                                 @error('marks.'.$key.'.practical_marks')
                                     <span class="help-block">
                                         <strong>{{ $message }}</strong>

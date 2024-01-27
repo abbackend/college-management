@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('image/{filename}', [App\Http\Controllers\HomeController::class, 'displayImage'])->name('display.image');
+    Route::get('results', [App\Http\Controllers\ResultController::class, 'index'])->name('student.results.index');
+    Route::get('results/{result}', [App\Http\Controllers\ResultController::class, 'show'])->name('student.results.view');
 });
 
 Route::get('/', function() {
     return redirect()->route('login');
 });
-
-Route::get('image/{filename}', [App\Http\Controllers\HomeController::class, 'displayImage'])->name('display.image');

@@ -40,7 +40,7 @@ class CourseController extends Controller
     {
         $data = $request->validated();
         $course = Course::query()->create($data);
-        foreach ($data['subjects'] as $subject_id) {
+        foreach ($data['subjects'] ?? [] as $subject_id) {
             CourseSubject::query()->create([
                 'course_id' => $course->id,
                 'subject_id' => $subject_id
@@ -69,7 +69,7 @@ class CourseController extends Controller
         $data = $request->validated();
         $course->fill($data)->save();
         $course->subjects()->delete();
-        foreach ($data['subjects'] as $subject_id) {
+        foreach ($data['subjects'] ?? [] as $subject_id) {
             CourseSubject::query()->create([
                 'course_id' => $course->id,
                 'subject_id' => $subject_id

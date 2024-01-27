@@ -26,7 +26,9 @@ class ResultRequest extends FormRequest
     {
         return [
             'marks.*.theory_marks.required' => 'This field is required.',
-            'marks.*.practical_marks.required' => 'This field is required.'
+            'marks.*.practical_marks.required' => 'This field is required.',
+            'marks.*.theory_marks.integer' => 'This field must be an integer.',
+            'marks.*.practical_marks.integer' => 'This field must be an integer.'
         ];
     }
 }

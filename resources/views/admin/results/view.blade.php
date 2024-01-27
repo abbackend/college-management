@@ -31,7 +31,7 @@
       <table class="table table-bordered">
         <tr>
           <td>{{ __('COURSE NAME :') }}</td>
-          <td>{{ $result->course_name }} ($result->student_status)</td>
+          <td>{{ $result->course_name }} ({{$result->student_status->name}})</td>
         </tr>
         <tr>
           <td>{{ __('SEMESTER/YEAR :') }}</td>

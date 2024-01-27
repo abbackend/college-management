@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Constants\UserType;
 use App\Models\Course;
+use App\Models\Result;
 use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -28,11 +29,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->type->value == UserType::ADMIN->value) {
+        $user = Auth::user();
+        if ($user->type->value == UserType::ADMIN->value) {
             return redirect()->route('admin.home');
         }
 
-        return view('home');
+        $results = Result::query()->where('user_id', $user->id)
+            ->where('is_published', true)
+            ->get();
+        return view('home', [
+            'results' => $results->count()
+        ]);
     }
 
     /**
