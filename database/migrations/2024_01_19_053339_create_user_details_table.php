@@ -20,7 +20,6 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id')->nullable();
             $table->integer('course_duration')->nullable();
             $table->string('enroll_number')->nullable();
-            $table->string('roll_number')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('father_name')->nullable();
@@ -32,6 +31,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('contact_number')->nullable();
             $table->string('profile_image')->nullable();
+            $table->string('signature_image')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

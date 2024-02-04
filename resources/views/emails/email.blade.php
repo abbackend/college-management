@@ -5,6 +5,7 @@
 
 Your account has been created by an admin. Here are your login details:
 
+**Enrollment Number:** {{ $user->details->enroll_number }} <br>
 **Email:** {{ $user->email }} <br>
 **Password:** {{ $password }}
 

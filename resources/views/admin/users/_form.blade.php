@@ -148,10 +148,16 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group @error('profile_image') has-error @enderror">
-                <label for="profile_image">{{ __('Profile image') }}</label>
-                <input type="file" name="profile_image" class="form-control" value="{{ $user ? $user->details->profile_image : old('profile_image') }}">
-                @error('profile_image')
+            <div class="form-group @error('status') has-error @enderror">
+                <label for="status">{{ __('Status') }}</label>
+                <select name="status" class="form-control select2">
+                    @foreach ($statuses as $status)
+                        <option value="{{ $status->value }}" @if($user ? $user->details->status->value == $status->value : old('status') == $status->value) selected @endif>
+                            {{ $status->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('status')
                     <span class="help-block">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -190,11 +196,22 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="form-group @error('address') has-error @enderror">
-                <label for="address">{{ __('Address') }}</label>
-                <textarea name="address" class="form-control">{{ $user ? $user->details->address : old('address') }}</textarea>
-                @error('address')
+        <div class="col-md-6">
+            <div class="form-group @error('profile_image') has-error @enderror">
+                <label for="profile_image">{{ __('Profile image') }}</label>
+                <input type="file" name="profile_image" class="form-control" value="{{ $user ? $user->details->profile_image : old('profile_image') }}">
+                @error('profile_image')
+                    <span class="help-block">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group @error('signature_image') has-error @enderror">
+                <label for="signature_image">{{ __('Signature image') }}</label>
+                <input type="file" name="signature_image" class="form-control" value="{{ $user ? $user->details->signature_image : old('signature_image') }}">
+                @error('signature_image')
                     <span class="help-block">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -203,17 +220,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group @error('status') has-error @enderror">
-                <label for="status">{{ __('Status') }}</label>
-                <select name="status" class="form-control select2">
-                    @foreach ($statuses as $status)
-                        <option value="{{ $status->value }}" @if($user ? $user->details->status->value == $status->value : old('status') == $status->value) selected @endif>
-                            {{ $status->name }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('status')
+        <div class="col-md-12">
+            <div class="form-group @error('address') has-error @enderror">
+                <label for="address">{{ __('Address') }}</label>
+                <textarea name="address" class="form-control">{{ $user ? $user->details->address : old('address') }}</textarea>
+                @error('address')
                     <span class="help-block">
                         <strong>{{ $message }}</strong>
                     </span>

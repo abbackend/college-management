@@ -53,9 +53,18 @@ class UserController extends Controller
             $profile_image = str_replace('public/', '', $file->store('public'));
         }
 
+        $signature_image = null;
+        if($request->hasFile('signature_image')) {
+            $file = $request->file('signature_image');
+            $signature_image = str_replace('public/', '', $file->store('public'));
+        }
+
         $user->details->update(array_merge(
             $data,
-            ['profile_image' => $profile_image]
+            [
+                'profile_image' => $profile_image,
+                'signature_image' => $signature_image
+            ]
         ));
 
         Mail::to($request->user())->send(new UserRegistered($user, $data['password']));
@@ -110,10 +119,28 @@ class UserController extends Controller
             }
         }
 
+        $signature_image = null;
+        if($request->hasFile('signature_image')) {
+            $file = $request->file('signature_image');
+            $signature_image = str_replace('public/', '', $file->store('public'));
+
+            if (!empty($user->details->signature_image)) {
+                $path = Storage::path('public/'.$user->details->signature_image);
+                unlink($path);
+            }
+        }
+
         if (!empty($profile_image)) {
             $data = array_merge(
                 $data,
                 ['profile_image' => $profile_image]
+            );
+        }
+
+        if (!empty($signature_image)) {
+            $data = array_merge(
+                $data,
+                ['signature_image' => $signature_image]
             );
         }
         $user->details->update($data);
