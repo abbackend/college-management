@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Result;
 use App\Models\User;
+use App\Observers\ResultObserver;
 use App\Observers\UserObserver;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -21,7 +23,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array<string, string|object|array<int, string|object>>
      */
     protected $observers = [
-        User::class => UserObserver::class
+        User::class => UserObserver::class,
+        Result::class => ResultObserver::class,
     ];
 
     /**

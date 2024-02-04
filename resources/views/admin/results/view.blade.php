@@ -38,10 +38,6 @@
           <td>{{ $result->course_duration }}</td>
         </tr>
         <tr>
-          <td>{{ __('ROLL NO :') }}</td>
-          <td>{{ $result->user->details->roll_number }}</td>
-        </tr>
-        <tr>
           <td>{{ __('STUDENT NAME :') }}</td>
           <td>{{ $result->user->name }}</td>
         </tr>

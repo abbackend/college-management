@@ -20,12 +20,6 @@
                 <input type="text" class="form-control" value="{{ $user->details->course_duration }}" readonly>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>{{ __('Roll Number') }}</label>
-                <input type="text" class="form-control" value="{{ $user->details->roll_number }}" readonly>
-            </div>
-        </div>
     </div>
     <!-- Table row -->
     <div class="row">

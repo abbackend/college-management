@@ -19,7 +19,6 @@ class UserDetail extends Model
         'course_id',
         'course_duration',
         'enroll_number',
-        'roll_number',
         'first_name',
         'last_name',
         'father_name',
@@ -30,6 +29,7 @@ class UserDetail extends Model
         'address',
         'contact_number',
         'profile_image',
+        'signature_image',
         'status',
     ];
 

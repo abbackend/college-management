@@ -26,6 +26,7 @@
 
     <!-- Toastr -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.0/css/toastr.css" rel="stylesheet" />
+    @stack('styles')
 </head>
 <body class="hold-transition login-page">
     @yield('content')
@@ -61,5 +62,6 @@
             });
         });
     </script>
+    @stack('scripts')
 </body>
 </html>

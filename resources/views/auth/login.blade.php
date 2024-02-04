@@ -1,5 +1,20 @@
 @extends('layouts.auth')
 
+@push('styles')
+<style>
+    .captcha-preview{
+        width: 100%;
+        height: 40px;
+        line-height: 35px;
+        letter-spacing: 8px;
+        border: dashed 1.5px;
+        border-radius: 0.5em;
+        margin-top: 1.6em;
+        text-align: center;
+    }
+</style>
+@endpush
+
 @section('content')
 <div class="login-box">
     <div class="login-logo">
@@ -8,7 +23,7 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">{{ __('Sign in to start your session') }}</p>
-        <form method="POST" action="{{ route('login') }}">
+        <form id="login" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group has-feedback @error('email') has-error @enderror">
                 <input type="email" name="email" class="form-control" placeholder="{{ __('Email Address') }}" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -27,6 +42,11 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+            <div class="form-group captcha-preview"></div>
+            <div class="form-group has-feedback captcha-value">
+                <input type="text" class="form-control" placeholder="{{ __('Enter captcha') }}" required>
+                <span class="d-none help-block"></span>
             </div>
             <div class="row">
                 <div class="col-xs-8">
@@ -54,3 +74,36 @@
 </div>
 <!-- /.login-box -->
 @endsection
+
+@push('scripts')
+<script>
+    $(function() {
+        generateCaptcha();
+        function generateCaptcha() {
+            let value = Math.floor(100000 + Math.random() * 900000);
+            $('.captcha-preview').text(value);
+        }
+
+        $('form#login').submit(function (event) {
+            let value = $('.captcha-value').find('input').val();
+            let match = $('.captcha-preview').text();
+
+            if (value == '') {
+                event.preventDefault();
+                $('.captcha-value').addClass('has-error');
+                $('.captcha-value').find('span.help-block').html('<strong>This field is required.</strong>');
+                $('.captcha-value').find('span.help-block').removeClass('d-none');
+                generateCaptcha();
+                return;
+            } else if (value != match) {
+                event.preventDefault();
+                $('.captcha-value').addClass('has-error');
+                $('.captcha-value').find('span.help-block').html('<strong>This value is invalid.</strong>');
+                $('.captcha-value').find('span.help-block').removeClass('d-none');
+                generateCaptcha();
+                return;
+            }
+        });
+    });
+</script>
+@endpush

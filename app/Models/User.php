@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->belongsTo(UserDetail::class, 'id', 'user_id');
     }
 
+    public function results()
+    {
+        return $this->hasMany(Result::class, 'user_id', 'id');
+    }
+
     public function scopeList($query)
     {
         return $query->where('type', UserType::STUDENT->value);
