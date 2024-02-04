@@ -80,9 +80,6 @@
         </table>
       </div>
     </div>
-    <marquee>
-      <p style="font-family: Ebrima; font-size: 15pt; color: maroon; margin: 1rem 0;">Please update your ABC Id. ABC id is mandatory, Without ABC id your document will not&nbsp;be&nbsp;verified.</p>
-    </marquee>
     <table class="table table-striped">
       <tr>
         <td>Photo & Signatue</td>
