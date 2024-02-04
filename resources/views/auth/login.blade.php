@@ -26,7 +26,7 @@
         <form id="login" method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group has-feedback @error('email') has-error @enderror">
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email Address') }}" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <input type="text" name="email" class="form-control" placeholder="{{ __('Email Address / Enroll Number') }}" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 @error('email')
                     <span class="invalid-feedback text-danger" role="alert">
