@@ -45,10 +45,11 @@ Here I have designed and developed College management system. The Technology I h
     - Add ![Add](http://i.imgur.com/FGYoyn1.png)
     - View ![View](http://i.imgur.com/OqiDXp3.png)
 
-## Authors
-
-- [@abbackend](https://www.github.com/abbackend)
 #### Student
 - Dashboard ![Dashboard](http://i.imgur.com/Zu6F6rd.png)
 - Result ![Result](http://i.imgur.com/jZkgYDg.png)
     - View ![View](http://i.imgur.com/hCeSale.png)
+
+## Authors
+
+- [@abbackend](https://www.github.com/abbackend)
