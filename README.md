@@ -1,4 +1,4 @@
-<img src="https://s1.ezgif.com/tmp/ezgif-1-b7a6619cc9.gif" width="100%"/>
+<img src="https://i.ibb.co/zRCTHGq/image.png" width="100%"/>
 
 # College Management
 
