@@ -1,4 +1,4 @@
-<img src="https://i.ibb.co/zRCTHGq/image.png" width="100%"/>
+<img src="https://github.com/abbackend/portfolio/blob/master/channels4_banner.jpg" width="100%"/>
 
 # College Management
 
